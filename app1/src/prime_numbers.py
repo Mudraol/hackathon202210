@@ -2,20 +2,19 @@
 Command: prime_numbers
 Return a list of all the prime numbers inferior or equal to n
 """
-def prime_numbers(n):
-    
-    def is_prime(n):
-        if n < 2:
-            return False
-        for i in range(2,n):
-            if (n%i) == 0:
-                return False
-        return True
+import math
 
-    result = []
-    for i in range(n+1):
-        if is_prime(i):
-            result.append(i)
+
+def prime_numbers(n):
+
+    result = [2]
+    for i in range(3, n+1):
+        for nombre_premier_precedent in result:
+            if i % nombre_premier_precedent == 0 and nombre_premier_precedent < math.sqrt(i):
+                return False
+            else:
+                result.append(i)
+        return True
     return result
 
 
